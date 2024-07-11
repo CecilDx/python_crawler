@@ -7,7 +7,7 @@ class doubantop250(object):
 
     def __init__(self):
         self.url = 'https://movie.douban.com/top250'
-        self.headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'}
+        self.headers = {'User-Agent':''}
 
     # requests 获取网页
     def get_url(self, url):
@@ -52,11 +52,11 @@ class doubantop250(object):
     # 写入 mysql
     def write_into_mysql(self, data):
         conn = pymysql.connect(
-            host='localhost',
-            port=3306,
-            user='root',
-            password='PHX1103p',
-            database='requestsproject',
+            host='',
+            port=,
+            user='',
+            password='',
+            database='',
             charset='utf8'
         )
         cur = conn.cursor()
