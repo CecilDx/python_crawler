@@ -4,7 +4,7 @@ import json
 import jsonpath
 import pymysql
 
-class feiyiscraper(object):
+class intangible_cultural_heritage(object):
 
     def __init__(self, pagenum):
         self.url = 'https://www.ihchina.cn/getProject.html?province=&rx_time=&type=&cate=&keywords=&category_id=16&limit=10&p={}'.format(pagenum)
@@ -52,6 +52,6 @@ class feiyiscraper(object):
 
 if __name__ == '__main__':
     for i in range(1, 362):
-        feiyi = feiyiscraper(i)
+        feiyi = intangible_cultural_heritage(i)
         feiyi.main()
         print(f'正在写入第{i}页')
