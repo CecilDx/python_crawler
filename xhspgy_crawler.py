@@ -10,10 +10,10 @@ class xhspgy_crawler(object):
         self.url = 'https://pgy.xiaohongshu.com/api/solar/cooperator/blogger/v2'
         self.cookies = cookies
         self.payload = {
-            'contentTag': contentTag,  # 指定爬取的博主笔记类目
-            'location': location,  # 指定爬取的博主位置
-            'gender': gender,  # 指定爬取的博主性别
-            'personalTags': personalTags  # 指定爬取的博主职业
+            'contentTag': contentTag,
+            'location': location,
+            'gender': gender,
+            'personalTags': personalTags
         }
         self.headers = {
                 'Origin': 'https://pgy.xiaohongshu.com',
@@ -76,32 +76,15 @@ class xhspgy_crawler(object):
         data_list = self.get_page_data()
         res = pd.concat([data_list])
         res.to_csv('./df.csv', index=False, encoding='utf-8-sig')
-        # return res
 
 
 if __name__ == '__main__':
-    pagenum = 1
-    contentTag = ["出行旅游"]
-    location = ["中国 江苏 南京"]
-    gender = '女'
-    personalTags = ["摄影师"]
-    cookies = {
-        "abRequestId": "745969b4-ffa3-5749-a572-8ba7aa1d9922",
-        "a1": "190ea2f4d1chaxg5y9nn9z6rhlvjek10kiwb9oo0450000878572",
-        "webId": "9ab412cf1a04a8794d50ce2b5f81b4ad",
-        "gid": "yj8d0Ji2q8TKyj8d0Ji4f3llySx0Ck2vjIIjE84uKFx1hD28VdTy8j888YWY2WJ8J8Di40qW",
-        "web_session": "040069b767298a4e05dded170a354bb9ee1a63",
-        "xsecappid": "ratlin",
-        "customerClientId": "857418022489424",
-        "acw_tc": "0a0d0eb817334707270374496e544835a976e583a368e1c4f62e25eb32d5f6",
-        "websectiga": "8886be45f388a1ee7bf611a69f3e174cae48f1ea02c0f8ec3256031b8be9c7ee",
-        "sec_poison_id": "873d0317-95e9-413d-8127-e084b2d4abac",
-        "customer-sso-sid": "68c517445206141335896043e14f5784c5ed09fa",
-        "x-user-id-pgy.xiaohongshu.com": "673488414f00000000000001",
-        "solar.beaker.session.id": "1733472139484095230738",
-        "access-token-pgy.xiaohongshu.com": "customer.pgy.AT-68c5174452061456247382654kztbcfpsr1kuav8",
-        "access-token-pgy.beta.xiaohongshu.com": "customer.pgy.AT-68c5174452061456247382654kztbcfpsr1kuav8"
-    }
+    pagenum = 1  # 指定爬取几页
+    contentTag = ["出行旅游"]  # 指定爬取某个内容类目的博主
+    location = ["中国 江苏 南京"]  # 指定爬取某个位置的博主
+    gender = '女'  # 指定爬取某个性别的博主
+    personalTags = ["摄影师"]  # 指定爬取某个职业的博主
+    cookies = {None}  # 登陆后，使用 json 格式的 cookies 替换
     crawler = xhspgy_crawler(pagenum=pagenum,
                              contentTag=contentTag,
                              location=location,
@@ -109,5 +92,3 @@ if __name__ == '__main__':
                              personalTags=personalTags,
                              cookies=cookies)
     crawler.main()
-    # content = crawler.main()
-    # print(content)
